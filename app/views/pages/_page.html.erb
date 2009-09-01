@@ -1,0 +1,4 @@
+<% div_for page do %>
+  <h2><%= link_to_unless_current h(page.title), page %></h2>
+  <%= truncate(simple_format(h(page.body)), :length => 100, :omission => "...") %>
+<% end %>

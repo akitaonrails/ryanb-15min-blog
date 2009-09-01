@@ -1,9 +1,11 @@
 class CommentsController < InheritedResources::Base
-  actions :create
+  actions :index, :create
   respond_to :html, :js
+  respond_to :xml, :only => :index
+  belongs_to :post, :polymorphic => true
+  belongs_to :page, :polymorphic => true, :finder => :find_by_slug!
+  
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.create!(params[:comment])
-    create! { post_url(@post) }
+    create! { url_for(parent) }
   end
 end

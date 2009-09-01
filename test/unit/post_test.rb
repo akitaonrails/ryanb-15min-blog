@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PostTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
+
   test "should be invalid" do
     @post = Post.new
     assert !@post.valid?

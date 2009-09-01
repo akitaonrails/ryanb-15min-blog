@@ -3,12 +3,5 @@ class PostsController < InheritedResources::Base
   respond_to :html, :xml
   respond_to :json, :only => :index
   respond_to :atom, :only => :index
-  
-  private
-  
-  def authenticate
-    authenticate_or_request_with_http_basic do |name, password|
-      name == 'admin' && password == 'secret'
-    end
-  end
+  has_scope :limit, :default => proc { |c| c.session[:limit] || 10 }  
 end

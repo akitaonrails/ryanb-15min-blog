@@ -1,9 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  post: one
-  body: MyText
+post_one:
+  commentable: one (Post)
+  body: MyText1
 
-two:
-  post: two
-  body: MyText
+post_two:
+  commentable: two (Post)
+  body: MyText2
+
+page_one:
+  commentable: one (Page)
+  body: MyTextOnPage1
+
+page_two:
+  commentable: two (Page)
+  body: MyTextOnPage2

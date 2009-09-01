@@ -1,0 +1,20 @@
+<%= render :partial => @page %>
+
+<p>
+	<%= link_to 'Edit', edit_page_path(@page) %> |
+	<%= link_to 'Destroy', @page, :method => :delete, :confirm => "Are you sure?" %> |
+	<%= link_to 'See All Pages', pages_path %>
+</p>
+
+<h2>Comments</h2>
+<div id="comments">
+	<%= render :partial => @page.comments %>
+</div>
+
+<% remote_form_for [@page, Comment.new] do |f| %>
+	<p>
+		<%= f.label :body, "New Comment" %><br />
+		<%= f.text_area :body %>
+	</p>
+	<p><%= f.submit "Add Comment" %></p>
+<% end %>

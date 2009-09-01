@@ -3,3 +3,55 @@
 This is the new version of the 15 min Blog demonstration, by Ryan Bates.
 
 Watch his screencast describing this code at http://rubyonrails.org/screencasts.
+
+== Converting to Inherited Resources
+
+The original Ryan Bates 15 min blog used bare bone Rails resources. With
+added tests it had this ammount of code:
+
+(master) $ rake stats
+(in /Users/akitaonrails/Sites/rails/ryanb-15min-blog)
++----------------------+-------+-------+---------+---------+-----+-------+
+| Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Controllers          |   116 |    83 |       3 |       9 |   3 |     7 |
+| Helpers              |     7 |     6 |       0 |       0 |   0 |     0 |
+| Models               |     7 |     7 |       2 |       0 |   0 |     0 |
+| Libraries            |     0 |     0 |       0 |       0 |   0 |     0 |
+| Integration tests    |     0 |     0 |       0 |       0 |   0 |     0 |
+| Functional tests     |    66 |    53 |       2 |       1 |   0 |    51 |
+| Unit tests           |    39 |    29 |       4 |       0 |   0 |     0 |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Total                |   235 |   178 |      11 |      10 |   0 |    15 |
++----------------------+-------+-------+---------+---------+-----+-------+
+  Code LOC: 96     Test LOC: 82     Code to Test Ratio: 1:0.9
+
+
+This new branch replaces it with Jose Valim's inherited_resources gem. It
+can be found here: http://wiki.github.com/josevalim/inherited_resources
+
+Using its features, the resulting code has the same behavior as before (with
+the same tests passing through perfectly) and the code stats come as this:
+
+(inherited) $ rake stats
+(in /Users/akitaonrails/Sites/rails/ryanb-15min-blog)
++----------------------+-------+-------+---------+---------+-----+-------+
+| Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Controllers          |    33 |    25 |       3 |       2 |   0 |    10 |
+| Helpers              |     7 |     6 |       0 |       0 |   0 |     0 |
+| Models               |     7 |     7 |       2 |       0 |   0 |     0 |
+| Libraries            |     0 |     0 |       0 |       0 |   0 |     0 |
+| Integration tests    |     0 |     0 |       0 |       0 |   0 |     0 |
+| Functional tests     |    66 |    53 |       2 |       1 |   0 |    51 |
+| Unit tests           |    39 |    29 |       4 |       0 |   0 |     0 |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Total                |   152 |   120 |      11 |       3 |   0 |    38 |
++----------------------+-------+-------+---------+---------+-----+-------+
+  Code LOC: 38     Test LOC: 82     Code to Test Ratio: 1:2.2
+
+
+In this particularly very simple application, we were able to reduce roughly
+60% of the code, which is pretty impressive. This is possible because the
+inherited_resources plugin removes a lot of redundancy from a Restful Rails
+Controller, making it even more DRY.

@@ -1,10 +1,9 @@
-class CommentsController < ApplicationController
+class CommentsController < InheritedResources::Base
+  actions :create
+  respond_to :html, :js
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create!(params[:comment])
-    respond_to do |format|
-      format.html { redirect_to @post }
-      format.js
-    end
+    create! { post_url(@post) }
   end
 end
